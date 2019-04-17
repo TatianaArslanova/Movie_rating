@@ -20,6 +20,7 @@ android {
         debug {
             buildConfigField 'String', 'BaseApiURL', '\"https://api.themoviedb.org/3/movie/\"'
             buildConfigField 'String', 'BaseImageURL', '\"http://image.tmdb.org/t/p/w185/\"'
+            buildConfigField 'String', "ApiKeyV3", ApiKeyV3
         }
 
         release {
@@ -27,6 +28,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField 'String', 'BaseApiURL', '\"https://api.themoviedb.org/3/movie/\"'
             buildConfigField 'String', 'BaseImageURL', '\"http://image.tmdb.org/t/p/w185/\"'
+            buildConfigField 'String', 'ApiKeyV3', ApiKeyV3
         }
     }
 }
