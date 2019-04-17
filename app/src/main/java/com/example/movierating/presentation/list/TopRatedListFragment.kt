@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.example.movierating.App
@@ -18,7 +19,7 @@ import dagger.Lazy
 import kotlinx.android.synthetic.main.fragment_list_top_rated.*
 import javax.inject.Inject
 
-class TopRatedListFragment : Fragment(), MovieListView {
+class TopRatedListFragment : MvpAppCompatFragment(), MovieListView {
 
     companion object {
         fun newInstance() = TopRatedListFragment()
@@ -47,6 +48,11 @@ class TopRatedListFragment : Fragment(), MovieListView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initUI()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        presenter.loadItems()
     }
 
     private fun initUI() {
