@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -15,9 +17,16 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            buildConfigField 'String', 'BaseApiURL', '\"https://api.themoviedb.org/3/movie/\"'
+            buildConfigField 'String', 'BaseImageURL', '\"http://image.tmdb.org/t/p/w185/\"'
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', 'BaseApiURL', '\"https://api.themoviedb.org/3/movie/\"'
+            buildConfigField 'String', 'BaseImageURL', '\"http://image.tmdb.org/t/p/w185/\"'
         }
     }
 }
@@ -27,6 +36,33 @@ dependencies {
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+
+    implementation "com.android.support:recyclerview-v7:$androidSupportVer"
+    implementation "com.android.support:cardview-v7:$androidSupportVer"
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVer"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVer"
+
+    implementation "com.google.dagger:dagger:$daggerVer"
+    implementation "com.google.dagger:dagger-android:$daggerVer"
+    implementation "com.google.dagger:dagger-android-support:$daggerVer"
+    kapt "com.google.dagger:dagger-compiler:$daggerVer"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVer"
+
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVer"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVer"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$retrofitCoroutinesVer"
+
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVer"
+
+    implementation "com.arello-mobile:moxy:$moxyVer"
+    implementation "com.arello-mobile:moxy-app-compat:$moxyVer"
+    kapt "com.arello-mobile:moxy-compiler:$moxyVer"
+
+    implementation("com.github.bumptech.glide:glide:$glideVer") {
+        exclude group: "com.android.support"
+    }
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
