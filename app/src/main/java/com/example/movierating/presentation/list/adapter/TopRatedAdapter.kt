@@ -4,8 +4,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.example.movierating.R
 import com.example.movierating.domain.MovieDTO
+import kotlinx.android.synthetic.main.li_top_rated.view.*
 
 class TopRatedAdapter : RecyclerView.Adapter<TopRatedAdapter.TopRatedViewHolder>() {
 
@@ -29,7 +31,11 @@ class TopRatedAdapter : RecyclerView.Adapter<TopRatedAdapter.TopRatedViewHolder>
     inner class TopRatedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(item: MovieDTO) {
-
+            itemView.tv_title.text = item.title
+            itemView.tv_overview.text = item.overview
+            Glide.with(itemView.context)
+                .load(item.posterPath)
+                .into(itemView.iv_image)
         }
     }
 }

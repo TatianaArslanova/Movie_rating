@@ -9,6 +9,9 @@ import retrofit2.http.Query
 interface MovieRatingApi {
 
     @GET("top_rated")
-    fun getTopRatedMovies(@Query("api_key") apiKey: String = BuildConfig.ApiKeyV3): Deferred<TopRatedResponceDTO>
+    fun getTopRatedMovies(
+        @Query("page") page: Int,
+        @Query("api_key") apiKey: String = BuildConfig.ApiKeyV3
+    ): Deferred<TopRatedResponceDTO>
 
 }
